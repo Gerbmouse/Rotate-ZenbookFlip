@@ -1,4 +1,4 @@
-# Rotate-Spectre  
+# Rotate-ZenbookFlip  
 
 This is a small python(2) script for linux that enables auto rotation of the touchscreen (as well as auto-rotation of the touchscreen input mapping) on the newer Kaby Lake model of the HP Spectre x360.  
 
