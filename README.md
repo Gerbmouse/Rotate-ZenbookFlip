@@ -1,27 +1,31 @@
-# Rotate-ZenbookFlip  
+# Rotate-ZenbookFlip
 
-This is a small python(2) script for linux that enables auto rotation of the touchscreen (as well as auto-rotation of the touchscreen input mapping) on the newer Kaby Lake model of the HP Spectre x360.  
+This is a small python(2) script for linux that enables auto rotation of the touchscreen (as well as auto-rotation of the touchscreen input mapping) on the latest Asus Zenbook and Variobook Flip models (the newer Kaby Lake model of the HP Spectre x360 should work as well).
 
-It's forked from a gist of a more robust script by [ei-grad](https://github.com/ei-grad), which, while functionally correct, wasn't auto-detecting my hardware. I explicitly added in the hardware names for the commands to work, and removed all of the auto-detecting features for simplicity. 
+It's forked from https://github.com/tegan-lamoureux/Rotate-Spectreand improved to take Asus Zen- and Variobook Flip into account.
 
-As of January 2018, it seems there's quite a few different touchscreens out there, as well as some pen-enabled spectres. For this script to work, you'll have to change device names yourself. The PEN line will only be used if pen support is found, so don't worry about it if yours doesn't have that. 
+For this script to work, you'll have to change device names yourself. The PEN line will only be used if pen support is found, so don't worry about it if yours doesn't have that.
 
 I'm aware that I could have programatically scanned and found the touchscreen name with check_output(), but that was where the first version of this script was failing me, and I don't have access to enough hardware to reliably write that. So manual it is.
 
+Changes in this version:
 
-### Requirements 
+ - device names adapted
+ - keyboard and touchpad are switch off in Tablet and Tent modes
+ - circumvents a bug in Mint Mate's Caja that fails in handling the representation of desktop after rotation
+ - adjusts acceleration of touchpad at startup (in Mate's GUI tool necessary values not able to adjust)
+
+### Requirements
 
  - Python 2.7
- - HP Spectre x360 (But honestly, it might work with others if the correct devices are passed. Give it a shot.)
- 
-### Usage  
+ - HP Spectre x360, Asus Zenbook Flip UX463FA (But honestly, it might work with others if the correct devices are passed. Give it a shot.)
 
-Find the names of your devices with `xinput --list`, and compare the names for your touchscreen, trackpad, and pen with the variables `TOUCHSCREEN`, `TOUCHPAD`, and `PEN` (if applicable) at the top of the script. Replace if necessary. 
+### Usage
 
-Run as a script (after making executable) with `./rotate.py &`, or by using python directly with `python2.7 rotate.py &`. For persistence after reboot, ensure it runs on boot, however that's done with your distribution. <s>For Ubuntu that's usually with `/etc/rc.local`</s> for Arch that's in `~/.xinit` before you exec your xorg/wm/dm.  
+Find the names of your devices with `xinput --list`, and compare the names for your touchscreen, trackpad, keyboard and / or pen with the variables `TOUCHSCREEN`, `TOUCHPAD`, `KEYBOARD` and / or `PEN` (if applicable) at the top of the script. Replace if necessary. Set MintMateBug to False if different DE is used.
 
-<b><u>Note:</u></b> Using rc.local may not actually work though. It needs to run after you already have an X session running, or the calls to xrandr, and xinput will fail. I don't have an ubuntu/debian system to test this on, but I'd suggest having it auto run somehow after your x session comes up. Probably with your WM/DE's provided system for running programs on startup.
+Run as a script (after making executable) with `./rotate.py &`, or by using python directly with `python2.7 rotate.py &`. For persistence after reboot, ensure it runs after starting the Desktop Environment, however that's done with your distribution. For Mint Mate (and others Gnome based DEs) that's usually done by placing a .desktop file in folder $HOME/.config/autostart, for Arch that's in `~/.xinit` before you exec your xorg/wm/dm.
 
-### Troubleshooting 
+### Troubleshooting
 
 Double check your names, make sure you're updated to the latest version of whatever kernel your distro runs, and make sure you're using Python 2. If it's still giving you an error, feel free to email or open an issue!
