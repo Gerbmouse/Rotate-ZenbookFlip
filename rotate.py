@@ -25,7 +25,7 @@ TOUCHPAD    = 'ASUE1407:00 04F3:310D Touchpad'
 PEN         = 'ELAN0732:00 04F3:22E1 Pen Pen (0)'
 KEYBOARD    = 'AT Translated Set 2 keyboard'
 
-# for Mint Mate we circumvent a bug in Caja which handles presentation of the desktop
+# for Mint Mate we circumvent a bug in Caja which handles presentation of the desktop wrong after rotation
 MintMateBug = True
 
 def bdopen(fname):
@@ -85,11 +85,6 @@ def read_accel(fp):
 
 
 if __name__ == '__main__':
-    # next if clause adjust the touchpad sensitivity because the values could not been
-    # set to prefered values in the GUI, could be deleted if not necessary
-    if MintMateBug:
-        check_call(['xinput', '--set-prop', TOUCHPAD, '306', '25'])
-        check_call(['xinput', '--set-prop', TOUCHPAD, '304', '1.5'])
 
     accel_x = bdopen('in_accel_x_raw')
     accel_y = bdopen('in_accel_y_raw')

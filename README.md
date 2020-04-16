@@ -13,7 +13,6 @@ Changes in this version:
  - device names adapted
  - keyboard and touchpad are switch off in Tablet and Tent modes
  - circumvents a bug in Mint Mate's Caja that fails in handling the representation of desktop after rotation
- - adjusts acceleration of touchpad at startup (in Mate's GUI tool necessary values not able to adjust)
 
 ### Requirements
 
